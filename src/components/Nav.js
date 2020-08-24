@@ -10,8 +10,8 @@ function NavBar() {
                 <Navbar.Brand href="#home"><h1>GitJobs</h1></Navbar.Brand>
                 <Nav className="mr-auto">
                     <Nav.Link href="#home"><h5>Home</h5></Nav.Link>
-                    <Nav.Link href="#features"><h5>About</h5></Nav.Link>
-                    <Nav.Link href="#pricing"><h5>Github</h5></Nav.Link>
+                    <Nav.Link href="#about"><h5>About</h5></Nav.Link>
+                    <Nav.Link href="https://jobs.github.com/"><h5>Github</h5></Nav.Link>
                 </Nav>
                 <Form inline>
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" />

@@ -1,5 +1,5 @@
 import { useReducer, useEffect } from 'react';
-import { MAKE_REQUEST, GET_DATA, ERROR } from './actions';
+import { MAKE_REQUEST, GET_DATA, ERROR, UPDATE_HAS_NEXT_PAGE } from './actions';
 import axios from 'axios';
 
 
@@ -21,6 +21,11 @@ function reducer(state, action) {
                 loading: false,
                 error: action.payload.error,
                 jobs: []
+            }
+        case UPDATE_HAS_NEXT_PAGE:
+            return {
+                ...state,
+                hasNextPage: action.payload.hasNextPage,
             }
         default:
             return state
@@ -48,8 +53,27 @@ export default function useFetchJobs(params, page) {
             if (axios.isCancel(err)) return
             dispatch({type: ERROR, payload: { error: err }})
         })
+
+        const cancelToken1 = axios.CancelToken.source();
+        axios.get(BASE_URL, {
+            cancelToken: cancelToken1.token,
+            params: {
+                markdown: true,
+                page: page + 1,
+                ...params
+            }
+        })
+        .then(res => {
+            dispatch({type: UPDATE_HAS_NEXT_PAGE, payload: { hasNextPage: res.data.length !== 0 } })
+        })
+        .catch(err => {
+            if (axios.isCancel(err)) return
+            dispatch({type: ERROR, payload: { error: err }})
+        })
+
         return () => {
             cancelToken.cancel();
+            cancelToken1.cancel();
         }
     }, [params, page]);
 
