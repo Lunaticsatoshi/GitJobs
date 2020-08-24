@@ -3,7 +3,7 @@ import { MAKE_REQUEST, GET_DATA, ERROR, UPDATE_HAS_NEXT_PAGE } from './actions';
 import axios from 'axios';
 
 
-const BASE_URL = "/positions.json";
+const BASE_URL = "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json";
 
 function reducer(state, action) {
     switch(action.type){
