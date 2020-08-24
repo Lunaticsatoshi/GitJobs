@@ -7,9 +7,9 @@ function NavBar() {
     return (
         <div>
             <Navbar bg="dark" variant="dark">
-                <Navbar.Brand href="#home"><h1>GitJobs</h1></Navbar.Brand>
+                <Navbar.Brand href="/"><h1>GitJobs</h1></Navbar.Brand>
                 <Nav className="mr-auto">
-                    <Nav.Link href="#home"><h5>Home</h5></Nav.Link>
+                    <Nav.Link href="/"><h5>Home</h5></Nav.Link>
                     <Nav.Link href="#about"><h5>About</h5></Nav.Link>
                     <Nav.Link href="https://jobs.github.com/"><h5>Github</h5></Nav.Link>
                 </Nav>
